@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kurs JavaScript</title>
+
+    <link rel="stylesheet" href="./src/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./src/css/style.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <main class="app-container">
+        <h3 class="text-center">Lista zadań do wykonania</h3>
+
+        <section class="new-task-container">
+            <form>
+                <div class="input-group">
+                    <input type="text" class="form-control input-add" placeholder="Nazwa zadania...">
+
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">Dodaj zadanie</button>
+                    </span>
+                </div>
+            </form>
+        </section>
+
+        <section class="tasks-container">
+            <ul>
+                <li class="single-task" id="clone" style="display:none">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default toggle-complete-btn"><i class="fa fa-check"></i></button>
+                        </span>
+
+                        <input type="text" class="form-control" placeholder="Tytuł zadania..." value="Wynieść śmieci">
+
+                        <span class="input-group-btn">
+                            <button class="btn btn-danger delete-task-btn"><i class="fa fa-times"></i></button>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <script src="./dist/bundle.js"></script>
+    <!-- <script src="js/modules/new-task.js"></script>
+    <script src="js/modules/tasks-list.js"></script>
+    <script src="js/modules/tasks.js"></script> -->
+</body>
+
+</html>
