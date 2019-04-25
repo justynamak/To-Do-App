@@ -15,7 +15,6 @@ class NewTask {
     setId(id) {
         this.id = id;
     }
+
 }
-export {
-    NewTask
-};
+export default NewTask;
