@@ -82,7 +82,7 @@ import {
 
     const addNewTask = function (e) {
         e.preventDefault();
-        const day = findActiveDay();
+        const day = findActiveDay(week);
 
         if (week[day].tasks.length >= 10) {
             alert("Maksymalna ilość zadań to 10. Jeśli chcesz dodać nowe zadanie musisz coś usunąć");
@@ -115,7 +115,7 @@ import {
         e.preventDefault();
         if (e.target.classList.contains("delete-btn") || e.target.parentElement.classList.contains("delete-btn")) {
             const element = e.target.closest("li");
-            const day = findActiveDay();
+            const day = findActiveDay(week);
             week[day].removeTask(element.dataset.id);
 
             element.parentElement.removeChild(element);
@@ -141,7 +141,7 @@ import {
         e.preventDefault();
         if (e.target.classList.contains("check-btn") || e.target.parentElement.classList.contains("check-btn")) {
             const element = e.target.closest("li");
-            const day = findActiveDay();
+            const day = findActiveDay(week);
             week[day].tasks[element.dataset.id].setDone(true);
             if (e.target.classList.contains("check-btn")) e.target.classList.add("btn-success");
             else e.target.parentElement.classList.add("btn-success");
@@ -155,7 +155,7 @@ import {
         if (e.target.classList.contains("task-field")) {
             const currentTaskId = e.target.closest("li").dataset.id;
             const currentValue = e.target.value;
-            const day = findActiveDay();
+            const day = findActiveDay(week);
             week[day].tasks[currentTaskId].setTask(currentValue);
             updateData();
         }
@@ -163,7 +163,7 @@ import {
 
     const removeAllTasks = function (e) {
         e.preventDefault();
-        const day = findActiveDay();
+        const day = findActiveDay(week);
         week[day].removeAllTasks();
         updateData();
 
