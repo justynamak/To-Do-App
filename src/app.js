@@ -1,15 +1,17 @@
 import NewTask from "./js/new-task";
-// import DayTasks from "./js/DayTasks";
 import week from "./js/week";
 
 import {
+    findActiveDay,
+    selectDay,
     generateHtml,
     updateDataId,
-    removeElementHtml,
     checkedTask,
     showTasksCount,
-    showDate
-} from "./js/tasks-list";
+    showDate,
+    addDateToWeekObj,
+    clearAllTasks
+} from "./js/helpers";
 
 (function () {
     const toDoList = document.querySelector("#to-do-list");
@@ -20,24 +22,12 @@ import {
         localStorage.setItem("week", JSON.stringify(week));
     };
 
-    const findActiveDay = function () {
-        for (let key in week) {
-            if (week[key].active) {
-                return key;
-            }
-        }
-    };
-    const selectDay = function (day) {
-        const index = navItems.findIndex(item => item.classList.contains("active"));
-        navItems[index].classList.remove("active");
-        document.querySelector(`.nav-item[data-day=${day}]`).classList.add("active");
-    };
 
     const chooseDay = function (e) {
         const day = e.currentTarget.dataset.day;
         const items = [...document.querySelectorAll(".single-task:not(#clone)")];
-        selectDay(day);
-        const dayActive = findActiveDay();
+        selectDay(day, navItems);
+        const dayActive = findActiveDay(week);
         week[dayActive].active = false;
         week[day].active = true;
 
@@ -54,29 +44,21 @@ import {
                 checkedTask(task);
             }
         });
-
         updateData();
 
-    }
+    };
 
     const showContent = function () {
+        const currentDay = showDate(navItems, week);
+        selectDay(currentDay, navItems);
+        week[currentDay].active = true;
+
+        const localSt = localStorage.getItem("week");
+        const data = JSON.parse(localSt);
+        clearAllTasks(data, navItems);
+        addDateToWeekObj(week, navItems);
+
         if (localStorage.getItem("week")) {
-            const localSt = localStorage.getItem("week");
-            const data = JSON.parse(localSt);
-
-            // const getDay = function () {
-            //     for (let key in data) {
-            //         if (data[key].active) {
-            //             return key;
-            //         }
-            //     }
-            // };
-            // const day = getDay();
-            const currentDay = showDate(navItems);
-            selectDay(currentDay);
-            week[currentDay].active = true;
-
-
             for (let key in data) {
                 data[key].tasks.forEach(day => {
                     const elem = new NewTask();
@@ -93,13 +75,8 @@ import {
                     checkedTask(task);
                 }
             });
-            showTasksCount(week);
-        } else {
-            const index = navItems.findIndex(item => item.classList.contains("active"));
-            const activeDay = navItems[index].dataset.day;
-            week[activeDay].active = true;
         }
-
+        showTasksCount(week);
         updateData();
     };
 

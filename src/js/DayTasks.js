@@ -2,6 +2,7 @@ class DayTasks {
     constructor() {
         this.tasks = [];
         this.active = false;
+        this.date = null;
 
     }
     addTask(obj) {

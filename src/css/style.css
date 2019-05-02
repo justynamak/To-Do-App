@@ -107,6 +107,12 @@ body {
 	display: none;
 }
 
+.btn-clear-all-days {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
 .btn-success {
 	color: white;
 	transition: 0.3s all ease-in-out;
