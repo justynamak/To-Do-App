@@ -12,6 +12,7 @@
 <li>Save tasks to LocalStorage</li>
 <li>See how many tasks have been done and added</li>
 <li>Have current dates of days this week</li>
+<li>The program cleans up tasks after each completed week</li>
 </ul>
 
 <h4>Technologies used:</h4>
