@@ -70,34 +70,37 @@ export const showDate = function (navItems, week) {
     let currentDay = ((today.getDay() - 1) >= 0) ? (today.getDay() - 1) : 6;
     let date = today.getDate();
     let count = currentDay;
-    const otherDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-
 
     const getDaysInMonth = function (month, year) {
         return new Date(year, month, 0).getDate();
     };
-    const checkDayIsLast = function () {
+    const checkDayIsLast = function (otherDay) {
         const monthLength = getDaysInMonth(otherDay.getMonth() + 1, otherDay.getFullYear());
         if (otherDay.getDate() === monthLength) {
             return true;
         }
     }
     items.forEach((item, i) => {
+        const otherDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        // const monthOtherDay = (otherDay.getDate() > date) ? today.getMonth() - 1 : today.getMonth();
+        // otherDay.setMonth(monthOtherDay);
+        //console.log(monthOtherDay);
         if (i < currentDay) {
 
-            if (checkDayIsLast()) {
+            if (checkDayIsLast(otherDay)) {
                 otherDay.setDate(1);
                 otherDay.setMonth(today.getMonth());
             } else {
                 otherDay.setDate(date - count);
             }
+            console.log(otherDay);
             item.innerHTML = `${otherDay.getDate()} ${monthNames[otherDay.getMonth()]} ${days[i]}`;
             count--;
         } else if (i === currentDay) {
             item.innerHTML = `${today.getDate()} ${monthNames[today.getMonth()]} ${days[i]}`;
         } else {
             count++;
-            if (checkDayIsLast()) {
+            if (checkDayIsLast(otherDay)) {
                 otherDay.setDate(1);
                 otherDay.setMonth(today.getMonth());
             } else {
