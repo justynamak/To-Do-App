@@ -91,10 +91,7 @@ export const showDate = function (navItems, week) {
             } else {
                 otherDay.setDate(date - count);
             }
-            //item.innerHTML = `${otherDay.getDate()} ${monthNames[otherDay.getMonth()]} ${days[daysIndex[index++]]}`;
-
             item.innerHTML = `${otherDay.getDate()} ${monthNames[otherDay.getMonth()]} ${days[i]}`;
-
             count--;
         } else if (i === currentDay) {
             item.innerHTML = `${today.getDate()} ${monthNames[today.getMonth()]} ${days[i]}`;
@@ -124,9 +121,10 @@ export const clearAllTasks = function (week, navItems) {
     for (let key in week) {
         let val1 = week[key].date;
         let val2 = navItems[i].innerText;
-        if (val1.substring(0) !== val2.substring(0)) {
+        if (val1 === null) return;
+        else if (val1.substring(0) !== val2.substring(0)) {
             week[key].tasks = [];
-        } else if (val1 === null) return;
+        }
         i++;
     }
 }
