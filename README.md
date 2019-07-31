@@ -1,6 +1,6 @@
 <h3>To Do list is a simple web application to save Your weekly tasks in order not to miss anything.</h3>
 
-<a href="https://justynamak.github.io/to-do-app-OOP/">Look at demo app here</a>
+<a href="https://justynamak.github.io/To-Do-App">Look at demo app here</a>
 
 <h4>You can:</h4>
 <ul>
