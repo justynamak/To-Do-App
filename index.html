@@ -1,134 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>To do App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link rel="stylesheet" href="./src/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./src/css/style.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
 
-<body>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Mali:400,600|Montserrat:400,700&display=swap&subset=latin-ext"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/css/style.css" />
+  </head>
 
+  <body>
     <div class="flex-container w-100">
-        <nav class="nav shadow bg-white rounded">
-            <ul class="list-group justify-content-around text-center vh-100">
-                <li class="nav-item border-bottom active" data-day="monday">
-                    <span class="badge badge-pill badge-secondary"></span>
-                    <span class="date">Poniedziałek</span>
-                </li>
-                <li class="nav-item border-bottom" data-day="tuesday">
-                    <span class="badge badge-pill badge-secondary"></span>
-                    <span class="date">Wtorek</span>
-                </li>
-                <li class="nav-item border-bottom" data-day="wednesday">
-                    <span class="badge badge-pill badge-secondary"></span>
-                    <span class="date">Środa</span>
-                </li>
-                <li class="nav-item border-bottom" data-day="thursday">
-                    <span class="badge badge-pill badge-secondary"></span>
-                    <span class="date">Czwartek</span>
-                </li>
-                <li class="nav-item border-bottom" data-day="friday">
-                    <span class="badge badge-pill badge-secondary"></span>
-                    <span class="date">Piątek</span>
-                </li>
-                <li class="nav-item border-bottom" data-day="saturday">
-                    <span class="badge badge-pill badge-secondary"></span>
-                    <span class="date">Sobota</span>
-                </li>
-                <li class="nav-item border-bottom" data-day="sunday">
-                    <span class="badge badge-pill badge-secondary"></span>
-                    <span class="date">Niedziela</span>
-                </li>
-
-            </ul>
-        </nav>
-        <main class="app-container">
-            <div class="container">
-                <div aria-atomic="true" style="position: relative; min-height: 50px;">
-                    <div role="alert" data-delay="2000" aria-atomic="true" class="toast" id="toast-removed"
-                        data-autohide="true" style="position: absolute; top: 0; right: 0;">
-                        <div class="toast-body">
-                            Usunięto zadanie
-                        </div>
-                    </div>
-                    <div role="alert" data-delay="2000" aria-atomic="true" class="toast" id="toast-added"
-                        data-autohide="true" style="position: absolute; top: 0; right: 0;">
-                        <div class="toast-body">
-                            Dodano nowe zadanie
-                        </div>
-                    </div>
-                    <div role="alert" data-delay="2000" aria-atomic="true" class="toast" id="toast-removed-all"
-                        data-autohide="true" style="position: absolute; top: 0; right: 0;">
-                        <div class="toast-body">
-                            Usunięto zadania
-                        </div>
-                    </div>
-
-                </div>
-
+      <nav class="nav shadow bg-white rounded">
+        <ul class="list-group justify-content-around text-center vh-100">
+          <li class="nav-item border-bottom active" data-day="monday">
+            <span class="badge badge-pill badge-secondary"></span>
+            <span class="date">Poniedziałek</span>
+          </li>
+          <li class="nav-item border-bottom" data-day="tuesday">
+            <span class="badge badge-pill badge-secondary"></span>
+            <span class="date">Wtorek</span>
+          </li>
+          <li class="nav-item border-bottom" data-day="wednesday">
+            <span class="badge badge-pill badge-secondary"></span>
+            <span class="date">Środa</span>
+          </li>
+          <li class="nav-item border-bottom" data-day="thursday">
+            <span class="badge badge-pill badge-secondary"></span>
+            <span class="date">Czwartek</span>
+          </li>
+          <li class="nav-item border-bottom" data-day="friday">
+            <span class="badge badge-pill badge-secondary"></span>
+            <span class="date">Piątek</span>
+          </li>
+          <li class="nav-item border-bottom" data-day="saturday">
+            <span class="badge badge-pill badge-secondary"></span>
+            <span class="date">Sobota</span>
+          </li>
+          <li class="nav-item border-bottom" data-day="sunday">
+            <span class="badge badge-pill badge-secondary"></span>
+            <span class="date">Niedziela</span>
+          </li>
+        </ul>
+      </nav>
+      <div class="app-container-bg"></div>
+      <main class="app-container">
+        <div class="container">
+          <div aria-atomic="true" style="position: relative; min-height: 50px;">
+            <div class="container-panels">
+              <section class="panel-added-tasks">
                 <h3 class="text-center">Lista zadań do wykonania</h3>
+                <section class="tasks-container mt-4">
+                  <ul id="to-do-list" class="pl-0">
+                    <li
+                      class="single-task mt-3"
+                      id="clone"
+                      style="display:none"
+                    >
+                      <div class="input-group task-panel">
+                        <span class="input-group-prepend">
+                          <button class="btn btn-outline-secondary">
+                            <i class="fa fa-check"></i>
+                          </button>
+                        </span>
 
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Tytuł zadania..."
+                          value="Wynieść śmieci"
+                        />
+
+                        <span class="input-group-append">
+                          <button class="btn btn-danger delete-task-btn">
+                            <i class="fa fa-times"></i>
+                          </button>
+                        </span>
+                      </div>
+                    </li>
+                  </ul>
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary mt-5 btn-clear-all"
+                  >
+                    Wyczyść listę zadań
+                  </button>
+                </section>
+              </section>
+              <section class="panel-new-task main-setup-panel">
+                <h3>Dodaj nowe zadanie</h3>
                 <section class="new-task-container mt-4">
-                    <form>
-                        <div class="input-group">
-                            <input type="text" class="form-control input-add" placeholder="Nazwa zadania...">
+                  <form>
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control input-add"
+                        placeholder="Nazwa zadania..."
+                      />
 
-                            <span class="input-group-append">
-                                <button class="btn btn-primary" id="btn-add" type="submit">Dodaj zadanie</button>
-                            </span>
-                        </div>
-                    </form>
+                      <span class="input-group-append">
+                        <button
+                          class="btn btn-custom-color"
+                          id="btn-add"
+                          type="submit"
+                        >
+                          Dodaj zadanie
+                        </button>
+                      </span>
+                    </div>
+                  </form>
                 </section>
-
-                <section class="tasks-container mt-5">
-                    <ul id="to-do-list" class="pl-0">
-                        <li class="single-task mt-3" id="clone" style="display:none">
-                            <div class="input-group task-panel">
-                                <span class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary">
-                                        <i class="fa fa-check"></i></button>
-                                </span>
-
-                                <input type="text" class="form-control" placeholder="Tytuł zadania..."
-                                    value="Wynieść śmieci">
-
-                                <span class="input-group-append">
-                                    <button class="btn btn-danger delete-task-btn"><i class="fa fa-times"></i></button>
-                                </span>
-                            </div>
-                        </li>
-                    </ul>
-                    <button type="button" class="btn btn-outline-secondary mt-5 btn-clear-all">Wyczyść listę
-                        zadań</button>
-                </section>
+                <ul class="menu-panel-change">
+                  <li
+                    class="menu-panel-item menu-panel-item-active"
+                    title="dodaj zadanie"
+                  >
+                    <i class="fas fa-plus"></i>
+                  </li>
+                  <li class="menu-panel-item">
+                    <i class="far fa-calendar-alt"></i>
+                  </li>
+                  <li class="menu-panel-item"><i class="fas fa-search"></i></li>
+                </ul>
+              </section>
             </div>
-        </main>
+          </div>
+        </div>
+      </main>
+
+      <div
+        class="toast  toast-custom-style"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        id="toast-added"
+        data-delay="5000"
+        data-autohide="true"
+      >
+        <div class="toast-header">
+          <i class="fas fa-tasks mr-2"></i>
+          <strong class="mr-auto">Dodano nowe zadanie</strong>
+          <small class="text-muted">just now</small>
+          <button
+            type="button"
+            class="ml-2 mb-1 close"
+            data-dismiss="toast"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="toast-body">
+          Masz nowe zadanie do wykonania :)
+        </div>
+      </div>
+
+      <div
+        class="toast  toast-custom-style"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        id="toast-removed"
+        data-delay="5000"
+        data-autohide="true"
+      >
+        <div class="toast-header">
+          <i class="fas fa-tasks mr-2"></i>
+          <strong class="mr-auto">Usunięto zadanie</strong>
+          <small class="text-muted">just now</small>
+          <button
+            type="button"
+            class="ml-2 mb-1 close"
+            data-dismiss="toast"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="toast-body">
+          Twoje zadanie zostało pomyślnie usunięte.
+        </div>
+      </div>
     </div>
 
-
-
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-
-    <script src="./dist/bundle.js"></script>
-    <!-- <script src="js/modules/new-task.js"></script>
-    <script src="js/modules/tasks-list.js"></script>
-    <script src="js/modules/tasks.js"></script> -->
-</body>
-
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

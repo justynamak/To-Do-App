@@ -1,119 +1,205 @@
-html,
-body {
-	height: 100%;
+* {
+  box-sizing: border-box;
 }
 
+html,
 body {
-	width: 100%;
+  height: 100%;
+}
+.toast-custom-style {
+  position: fixed;
+  bottom: 100px;
+  right: 0.5%;
+  z-index: 1;
+  width: 25%;
+  background: lightblue;
+  font-family: "Montserrat", sans-serif;
+}
+h2,
+h3 {
+  font-size: 1.6rem;
+}
+body {
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+}
+.input-group > .custom-select:not(:last-child),
+.input-group > .form-control:not(:last-child) {
+  background: transparent;
 }
 
 .flex-container {
-	display: flex;
-	flex-direction: row;
-	width: 100%;
-	height: 100vh;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
 }
 
 @media (max-width: 768px) {
-	.flex-container {
-		flex-direction: column;
-		height: auto;
-	}
+  .flex-container {
+    flex-direction: column;
+    height: auto;
+  }
 }
 
 .nav {
-	width: 25%;
-	position: fixed;
-	left: 0;
-	top: 0;
-	height: 100vh;
-	z-index: 10;
+  width: 25%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  z-index: 10;
 }
 
 @media (max-width: 768px) {
-	.nav {
-		width: 100%;
-		position: static;
-	}
+  .nav {
+    width: 100%;
+    position: static;
+  }
 }
-
+.container-panels {
+  display: flex;
+}
+.main-setup-panel {
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  background: #ffffff85;
+  width: 20%;
+  padding: 75px 20px;
+}
+.panel-added-tasks {
+  width: 60%;
+  padding: 50px 20px;
+}
+.menu-panel-change {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 20%;
+  list-style-type: none;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: darkslategray;
+  margin: 0;
+}
+.menu-panel-item {
+  font-size: 1.5rem;
+  margin: 0 1rem;
+  color: darkslategray;
+  background: white;
+  border-radius: 50px;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.menu-panel-item-active {
+  color: #0998ec;
+}
 /* App container*/
 .app-container {
-	position: absolute;
-	width: 75%;
-	height: auto;
-	top: 0;
-	right: 0;
-	min-height: 100vh;
-	padding: 25px;
-	padding-left: 7%;
-	padding-right: 7%;
-	background: rgba(255, 255, 255, 0.7);
-	box-shadow: 0 0 62px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  width: 75%;
+  height: auto;
+  top: 0;
+  right: 0;
+  min-height: 100vh;
+  padding: 25px;
+  padding-left: 7%;
+  padding-right: 7%;
+  box-shadow: 0 0 62px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {
-	.app-container {
-		position: static;
-		width: 100%;
-	}
+  .app-container {
+    position: static;
+    width: 100%;
+  }
 }
-
+.app-container-bg {
+  width: 75%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: url("../assets/dairy-1986532_1920.jpg");
+  background-size: cover;
+  opacity: 0.3;
+}
 .list-group {
-	height: 100vh;
-	display: flex;
-	width: 100%;
-	justify-content: space-around;
-	flex-direction: column;
+  height: 100vh;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  flex-direction: column;
 }
 
 .nav-item {
-	height: 14.3%;
-	overflow: hidden;
-	display: flex;
-	flex-direction: row-reverse;
-	align-items: center;
-	justify-content: space-between;
-	cursor: pointer;
-	padding: 0 2em;
-	transition: 0.2s all ease-in-out;
+  height: 14.3%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 0 2em;
+  transition: 0.2s all ease-in-out;
 }
 
 .active {
-	background: #ccc;
+  background: #315eff1a;
 }
 
 .app-container h3 {
-	margin: 0 0 25px;
+  margin: 0 0 35px;
 }
 
 /* New task */
 .new-task-container {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 /* Tasks list */
 .tasks-container ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .single-task {
-	margin-bottom: 12px;
+  margin-bottom: 12px;
 }
 
 .btn-clear-all {
-	display: none;
+  display: none;
 }
 
 .btn-clear-all-days {
-	position: absolute;
-	top: 0;
-	right: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .btn-success {
-	color: white;
-	transition: 0.3s all ease-in-out;
+  color: white;
+  transition: 0.3s all ease-in-out;
+}
+.btn-custom-color {
+  color: white;
+  background: #0998ec;
+}
+.btn-custom-color:hover {
+  color: white;
+  background: #0998ec;
+}
+/* #ec0972 */
+.date {
+  /* font-family: "Mali", cursive;*/
+  font-weight: 700;
 }
