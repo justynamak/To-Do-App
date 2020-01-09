@@ -155,8 +155,8 @@ import {
       const day = findActiveDay(week);
       week[day].tasks[element.dataset.id].setDone(true);
       if (e.target.classList.contains("check-btn"))
-        e.target.classList.add("btn-success");
-      else e.target.parentElement.classList.add("btn-success");
+        e.target.classList.add("btn-success-custom");
+      else e.target.parentElement.classList.add("btn-success-custom");
       updateData();
       showTasksCount(week);
     }
