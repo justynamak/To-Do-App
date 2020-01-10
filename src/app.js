@@ -16,7 +16,8 @@ import {
   showTasksCount,
   showDate,
   addDateToWeekObj,
-  clearAllTasks
+  clearAllTasks,
+  checkIfYouCanAddATask
 } from "./js/helpers";
 
 (function() {
@@ -111,7 +112,10 @@ import {
     const value = getValue();
     let task;
 
-    if (value) {
+    if (
+      value &&
+      checkIfYouCanAddATask(day, showDate(navItems, week), navItems)
+    ) {
       task = new NewTask();
       task.setTask(value);
       task.setId(week[day].addTask(task));
@@ -119,6 +123,8 @@ import {
       updateData();
       showTasksCount(week);
       $("#toast-added").toast("show");
+    } else {
+      $("#toast-block-task").toast("show");
     }
   };
 

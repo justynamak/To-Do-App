@@ -10,7 +10,16 @@ export const selectDay = function(day, navItems) {
   navItems[index].classList.remove("active");
   document.querySelector(`.nav-item[data-day=${day}]`).classList.add("active");
 };
+export const checkIfYouCanAddATask = function(selectDay, currentDay, navItems) {
+  const indexSelectDay = navItems.findIndex(
+    elem => elem.dataset.day === selectDay
+  );
+  const indexCurrentDay = navItems.findIndex(
+    elem => elem.dataset.day === currentDay
+  );
 
+  return indexCurrentDay <= indexSelectDay ? true : false;
+};
 export const generateHtml = obj => {
   const ul = document.querySelector("#to-do-list");
   const clone = document.querySelector("#clone");

@@ -196,6 +196,32 @@
           Twoje zadanie zostało pomyślnie usunięte.
         </div>
       </div>
+      <div
+        class="toast  toast-custom-style"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        id="toast-block-task"
+        data-delay="5000"
+        data-autohide="true"
+      >
+        <div class="toast-header">
+          <i class="fas fa-tasks mr-2"></i>
+          <strong class="mr-auto">Błąd</strong>
+          <small class="text-muted">just now</small>
+          <button
+            type="button"
+            class="ml-2 mb-1 close"
+            data-dismiss="toast"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="toast-body">
+          Nie możesz dodawać zadań dla zakończych dni.
+        </div>
+      </div>
     </div>
 
     <script
