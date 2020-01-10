@@ -27,7 +27,12 @@ import {
   const updateData = function() {
     localStorage.setItem("week", JSON.stringify(week));
   };
-
+  const selectCurrentDay = function() {
+    const curentDay = showDate(navItems, week);
+    navItems
+      .find(element => element.dataset.day === curentDay)
+      .querySelector(".date").style.color = "black";
+  };
   const chooseDay = function(e) {
     const day = e.currentTarget.dataset.day;
     const items = [...document.querySelectorAll(".single-task:not(#clone)")];
@@ -199,4 +204,5 @@ import {
   navItems.forEach(item => {
     item.addEventListener("click", chooseDay);
   });
+  selectCurrentDay();
 })();

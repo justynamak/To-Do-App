@@ -27,10 +27,20 @@ body {
 .input-group > .form-control:not(:last-child) {
   background: transparent;
 }
-.badge-info {
-  padding: 0.6rem;
+.nav .badge-info {
+  color: black;
+  background-color: #dee2e6;
+  width: 20%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  align-self: flex-start;
 }
-
+.badge {
+  border-radius: 0;
+}
 .flex-container {
   display: flex;
   flex-direction: row;
@@ -141,10 +151,11 @@ body {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  justify-content: space-between;
   cursor: pointer;
-  padding: 0 2em;
+  padding-left: 3%;
   transition: 0.2s all ease-in-out;
+  justify-content: space-between;
+  text-align: left;
 }
 
 .active {
@@ -195,8 +206,9 @@ body {
 }
 /* #ec0972 */
 .date {
-  /* font-family: "Mali", cursive;*/
+  font-size: 0.85rem;
   font-weight: 700;
+  color: gray;
 }
 .check-btn,
 .delete-btn {
@@ -248,6 +260,9 @@ body {
     background: darkslategray;
     color: white;
   }
+  .nav .badge-info {
+    width: 30%;
+  }
 }
 
 @media (max-width: 820px) {
@@ -282,5 +297,8 @@ body {
   }
   .nav {
     height: 50vh;
+  }
+  .nav .badge-info {
+    height: 100%;
   }
 }
