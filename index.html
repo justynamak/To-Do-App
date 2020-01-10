@@ -26,7 +26,7 @@
   <body>
     <div class="flex-container w-100">
       <nav class="nav shadow bg-white rounded">
-        <ul class="list-group justify-content-around text-center vh-100">
+        <ul class="list-group justify-content-around text-center h-100">
           <li class="nav-item border-bottom active" data-day="monday">
             <span class="badge badge-pill badge-info"></span>
             <span class="date">Poniedziałek</span>
@@ -57,8 +57,9 @@
           </li>
         </ul>
       </nav>
-      <div class="app-container-bg"></div>
+
       <main class="app-container">
+        <div class="app-container-bg"></div>
         <div class="container">
           <div aria-atomic="true" style="position: relative; min-height: 50px;">
             <div class="container-panels">
@@ -95,7 +96,7 @@
                     type="button"
                     class="btn btn-outline-secondary mt-5 btn-clear-all"
                   >
-                    Wyczyść listę zadań
+                    Wyczyść bieżącą listę zadań
                   </button>
                 </section>
               </section>
@@ -109,32 +110,34 @@
                         class="form-control input-add"
                         placeholder="Nazwa zadania..."
                       />
-
-                      <span class="input-group-append">
-                        <button
-                          class="btn btn-custom-color"
-                          id="btn-add"
-                          type="submit"
-                        >
-                          Dodaj zadanie
-                        </button>
-                      </span>
                     </div>
+                    <p class="mt-3">Przypnij etykietę</p>
+                    <ul>
+                      <li></li>
+                      <li></li>
+                    </ul>
+                    <button
+                      class="btn btn-custom-color mx-auto d-block mt-4"
+                      id="btn-add"
+                      type="submit"
+                    >
+                      Dodaj zadanie
+                    </button>
                   </form>
                 </section>
-                <ul class="menu-panel-change">
-                  <li
-                    class="menu-panel-item menu-panel-item-active"
-                    title="dodaj zadanie"
-                  >
-                    <i class="fas fa-plus"></i>
-                  </li>
-                  <li class="menu-panel-item">
-                    <i class="far fa-calendar-alt"></i>
-                  </li>
-                  <li class="menu-panel-item"><i class="fas fa-search"></i></li>
-                </ul>
               </section>
+              <ul class="menu-panel-change">
+                <li
+                  class="menu-panel-item menu-panel-item-active"
+                  title="dodaj zadanie"
+                >
+                  <i class="fas fa-plus"></i>
+                </li>
+                <li class="menu-panel-item">
+                  <i class="far fa-calendar-alt"></i>
+                </li>
+                <li class="menu-panel-item"><i class="fas fa-search"></i></li>
+              </ul>
             </div>
           </div>
         </div>
