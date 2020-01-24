@@ -13,10 +13,6 @@
     />
 
     <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link
       href="https://fonts.googleapis.com/css?family=Mali:400,600|Montserrat:400,700&display=swap&subset=latin-ext"
       rel="stylesheet"
     />
@@ -27,7 +23,7 @@
     <div class="flex-container w-100">
       <nav class="nav shadow bg-white">
         <ul class="list-group justify-content-around h-100">
-          <li class="nav-item border-bottom active" data-day="monday">
+          <li class="nav-item border-bottom active-day" data-day="monday">
             <span class="badge badge-info"></span>
             <span class="date">Poniedziałek</span>
           </li>
@@ -101,38 +97,62 @@
                 </section>
               </section>
               <section class="panel-new-task main-setup-panel">
-                <h3>Dodaj nowe zadanie</h3>
-                <section class="new-task-container mt-4">
+                <div class="main-setup-panel-content active" id="addTask">
+                  <h3>Dodaj nowe zadanie</h3>
+                  <section class="new-task-container mt-4">
+                    <form>
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control input-add"
+                          placeholder="Nazwa zadania..."
+                        />
+                      </div>
+
+                      <button
+                        class="btn btn-custom-color mx-auto d-block mt-4"
+                        id="btn-add"
+                        type="submit"
+                      >
+                        Dodaj zadanie
+                      </button>
+                    </form>
+                  </section>
+                </div>
+                <div class="main-setup-panel-content" id="searchTask">
+                  <h3>Wyszukaj zadanie</h3>
                   <form>
                     <div class="input-group">
                       <input
                         type="text"
                         class="form-control input-add"
-                        placeholder="Nazwa zadania..."
+                        placeholder="Fraza..."
                       />
                     </div>
 
                     <button
                       class="btn btn-custom-color mx-auto d-block mt-4"
-                      id="btn-add"
+                      id="btn-search"
                       type="submit"
                     >
-                      Dodaj zadanie
+                      Szukaj
                     </button>
                   </form>
-                </section>
+                </div>
               </section>
+
               <ul class="menu-panel-change">
                 <li
                   class="menu-panel-item menu-panel-item-active"
                   title="dodaj zadanie"
+                  name="addTask"
                 >
                   <i class="fas fa-plus"></i>
                 </li>
-                <li class="menu-panel-item">
-                  <i class="far fa-calendar-alt"></i>
+
+                <li class="menu-panel-item" name="searchTask">
+                  <i class="fas fa-search"></i>
                 </li>
-                <li class="menu-panel-item"><i class="fas fa-search"></i></li>
               </ul>
             </div>
           </div>

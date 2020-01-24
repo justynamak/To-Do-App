@@ -70,7 +70,12 @@ body {
   width: 20%;
   padding: 75px 20px;
 }
-
+.main-setup-panel-content {
+  display: none;
+}
+.active {
+  display: block;
+}
 .panel-added-tasks {
   width: 60%;
   padding: 50px 20px;
@@ -109,7 +114,7 @@ body {
 }
 
 .menu-panel-item-active {
-  color: #17a2b8;
+  color: #17a2b8 !important;
 }
 /* App container*/
 .app-container {
@@ -158,7 +163,7 @@ body {
   text-align: left;
 }
 
-.active {
+.active-day {
   background: #315eff1a;
 }
 

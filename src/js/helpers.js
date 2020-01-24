@@ -6,9 +6,13 @@ export const findActiveDay = function(week) {
   }
 };
 export const selectDay = function(day, navItems) {
-  const index = navItems.findIndex(item => item.classList.contains("active"));
-  navItems[index].classList.remove("active");
-  document.querySelector(`.nav-item[data-day=${day}]`).classList.add("active");
+  const index = navItems.findIndex(item =>
+    item.classList.contains("active-day")
+  );
+  navItems[index].classList.remove("active-day");
+  document
+    .querySelector(`.nav-item[data-day=${day}]`)
+    .classList.add("active-day");
 };
 export const checkIfYouCanAddATask = function(selectDay, currentDay, navItems) {
   const indexSelectDay = navItems.findIndex(
@@ -134,7 +138,7 @@ export const showDate = function(navItems, week) {
       } else {
         otherDay.setDate(date - count);
       }
-      console.log(otherDay);
+
       item.innerHTML = `${otherDay.getDate()} ${
         monthNames[otherDay.getMonth()]
       } ${days[i]}`;

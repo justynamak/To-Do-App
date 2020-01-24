@@ -1,8 +1,6 @@
-// import "../node_modules/@fortawesome/fontawesome-free/css/all";
-
-import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./css/style.css";
-import "../node_modules/@fortawesome/fontawesome-free/js/all";
+import "@fortawesome/fontawesome-free/js/all";
 
 import NewTask from "./js/new-task";
 import week from "./js/week";
@@ -24,6 +22,7 @@ import {
   const toDoList = document.querySelector("#to-do-list");
   const btnRemoveAll = document.querySelector(".btn-clear-all");
   const navItems = [...document.querySelectorAll(".nav-item")];
+  const menuPanelItems = [...document.querySelectorAll(".menu-panel-item")];
 
   const updateData = function() {
     localStorage.setItem("week", JSON.stringify(week));
@@ -32,7 +31,7 @@ import {
     const curentDay = showDate(navItems, week);
     navItems
       .find(element => element.dataset.day === curentDay)
-      .querySelector(".date").style.color = "black";
+      .querySelector(".date").style.color = "#ff5555";
   };
   const chooseDay = function(e) {
     const day = e.currentTarget.dataset.day;
@@ -200,7 +199,24 @@ import {
     showTasksCount(week);
     $("#toast-removed-all").toast("show");
   };
+  const clearAllElementsActiveClass = function(elements, className) {
+    const elems = document.querySelectorAll(elements);
+    elems.forEach(elem => elem.classList.remove(className));
+  };
+  const changePanelActive = function(e) {
+    const name = e.currentTarget.getAttribute("name");
 
+    clearAllElementsActiveClass(".menu-panel-item", "menu-panel-item-active");
+    const element = document.querySelector(`[name = ${name}]`);
+    element.classList.add("menu-panel-item-active");
+    changeVisibilityElement(name);
+  };
+  const changeVisibilityElement = function(id) {
+    const element = document.querySelector(`#${id}`);
+
+    clearAllElementsActiveClass(".main-setup-panel-content", "active");
+    element.classList.add("active");
+  };
   document.addEventListener("DOMContentLoaded", showContent);
   document.querySelector("#btn-add").addEventListener("click", addNewTask);
   toDoList.addEventListener("click", removeTask);
@@ -210,5 +226,8 @@ import {
   navItems.forEach(item => {
     item.addEventListener("click", chooseDay);
   });
+  menuPanelItems.forEach(item =>
+    item.addEventListener("click", changePanelActive)
+  );
   selectCurrentDay();
 })();
