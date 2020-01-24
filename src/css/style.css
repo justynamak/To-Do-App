@@ -74,7 +74,7 @@ body {
   display: none;
 }
 .active {
-  display: block;
+  display: block !important;
 }
 .panel-added-tasks {
   width: 60%;
@@ -232,6 +232,9 @@ body {
 .delete-btn:hover {
   color: red;
   background: none;
+}
+.search-results {
+  display: none;
 }
 
 @media (max-width: 1280px) {

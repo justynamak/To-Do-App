@@ -19,7 +19,6 @@ export const updateDataId = arr => {
   const items = [...document.querySelectorAll(".single-task:not(#clone)")];
 
   arr.forEach((el, index) => {
-    console.log(el, index);
     items[index].dataset.id = el.id;
   });
 };

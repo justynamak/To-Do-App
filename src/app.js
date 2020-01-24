@@ -23,6 +23,9 @@ import {
   const btnRemoveAll = document.querySelector(".btn-clear-all");
   const navItems = [...document.querySelectorAll(".nav-item")];
   const menuPanelItems = [...document.querySelectorAll(".menu-panel-item")];
+  const inputFieldAdd = document.querySelector("#inputAdd");
+  const searchForm = document.querySelector("#searchForm");
+  const searchResults = document.querySelector(".search-results");
 
   const updateData = function() {
     localStorage.setItem("week", JSON.stringify(week));
@@ -217,6 +220,46 @@ import {
     clearAllElementsActiveClass(".main-setup-panel-content", "active");
     element.classList.add("active");
   };
+  const removeItems = function(list) {
+    list.innerHTML = "";
+  };
+  const createListItems = function(results) {
+    results.forEach(item => {
+      const li = document.createElement("li");
+      document.querySelector(".search-results-list").appendChild(li);
+      li.innerHTML = `<a href="#">${item.task}</a>`;
+      li.classList.add("search-results-item");
+    });
+  };
+  const createListResults = function() {
+    const ul = document.createElement("ul");
+    searchResults.appendChild(ul);
+    ul.classList.add("search-results-list");
+  };
+  const showSearchResults = function(results) {
+    searchResults.classList.add("active");
+    const items = searchResults.querySelector("li");
+    if (items) removeItems(searchResults.querySelector("ul"));
+    createListResults();
+    createListItems(results);
+  };
+  const handleFormSubmit = function(e) {
+    e.preventDefault();
+    const value = inputFieldAdd.value;
+
+    if (value) {
+      let searchResults = [];
+      for (let key in week) {
+        let tasks = week[key].findTask(value);
+        if (tasks.length) {
+          tasks.forEach(task => searchResults.push(task));
+        }
+      }
+      this.reset();
+      showSearchResults(searchResults);
+    }
+  };
+
   document.addEventListener("DOMContentLoaded", showContent);
   document.querySelector("#btn-add").addEventListener("click", addNewTask);
   toDoList.addEventListener("click", removeTask);
@@ -229,5 +272,6 @@ import {
   menuPanelItems.forEach(item =>
     item.addEventListener("click", changePanelActive)
   );
+  searchForm.addEventListener("submit", handleFormSubmit);
   selectCurrentDay();
 })();
