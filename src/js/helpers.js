@@ -54,7 +54,7 @@ export const checkedTask = task => {
   const currentItem = document.querySelector(`li[data-id="${currentCheck}"]`);
   const currentBtn = currentItem.querySelector(".check-btn");
   const currentSpan = currentItem.querySelector(".task-field");
-  currentBtn.classList.add("btn-success");
+  currentBtn.classList.add("btn-success-custom");
 };
 
 export const showTasksCount = function(obj) {

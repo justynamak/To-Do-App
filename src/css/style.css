@@ -236,6 +236,14 @@ body {
 .search-results {
   display: none;
 }
+.search-results-list {
+  margin: 0;
+  list-style-type: none;
+  padding: 15px;
+}
+.search-results-item a {
+  color: black;
+}
 
 @media (max-width: 1280px) {
   .main-setup-panel {

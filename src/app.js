@@ -239,24 +239,25 @@ import {
   const showSearchResults = function(results) {
     searchResults.classList.add("active");
     const items = searchResults.querySelector("li");
-    if (items) removeItems(searchResults.querySelector("ul"));
-    createListResults();
+    const ul = searchResults.querySelector("ul");
+    if (items) removeItems(ul);
+    if (!ul) createListResults();
     createListItems(results);
   };
-  const handleFormSubmit = function(e) {
-    e.preventDefault();
-    const value = inputFieldAdd.value;
 
+  const handleInputSearchChange = function(e) {
+    let value = this.value;
     if (value) {
       let searchResults = [];
       for (let key in week) {
         let tasks = week[key].findTask(value);
-        if (tasks.length) {
+        if (tasks.length > 0) {
           tasks.forEach(task => searchResults.push(task));
         }
+        showSearchResults(searchResults);
       }
-      this.reset();
-      showSearchResults(searchResults);
+    } else {
+      searchResults.classList.remove("active");
     }
   };
 
@@ -272,6 +273,6 @@ import {
   menuPanelItems.forEach(item =>
     item.addEventListener("click", changePanelActive)
   );
-  searchForm.addEventListener("submit", handleFormSubmit);
+  inputFieldAdd.addEventListener("keyup", handleInputSearchChange);
   selectCurrentDay();
 })();
