@@ -26,6 +26,10 @@ import {
   const inputFieldAdd = document.querySelector("#inputAdd");
   const searchForm = document.querySelector("#searchForm");
   const searchResults = document.querySelector(".search-results");
+  const navButton = document.querySelector("#navButton");
+  const nav = document.querySelector("#main-nav");
+  const mainSetupPanel = document.querySelector(".main-setup-panel");
+  const closeButton = document.querySelector("#closeButton");
 
   const updateData = function() {
     localStorage.setItem("week", JSON.stringify(week));
@@ -206,9 +210,19 @@ import {
     const elems = document.querySelectorAll(elements);
     elems.forEach(elem => elem.classList.remove(className));
   };
+  const changeVisibilityCloseButton = function() {
+    if (
+      mainSetupPanel.classList.contains("active-mobile-panel") ||
+      nav.classList.contains("active-mobile-nav")
+    ) {
+      closeButton.classList.add("active");
+    } else {
+      closeButton.classList.remove("active");
+    }
+  };
   const changePanelActive = function(e) {
     const name = e.currentTarget.getAttribute("name");
-
+    mainSetupPanel.classList.add("active-mobile-panel");
     clearAllElementsActiveClass(".menu-panel-item", "menu-panel-item-active");
     const element = document.querySelector(`[name = ${name}]`);
     element.classList.add("menu-panel-item-active");
@@ -219,6 +233,7 @@ import {
 
     clearAllElementsActiveClass(".main-setup-panel-content", "active");
     element.classList.add("active");
+    changeVisibilityCloseButton();
   };
   const removeItems = function(list) {
     list.innerHTML = "";
@@ -260,6 +275,36 @@ import {
       searchResults.classList.remove("active");
     }
   };
+  const changeVisibilityMobileNav = function() {
+    if (nav.classList.contains("active-mobile-nav")) {
+      nav.classList.remove("active-mobile-nav");
+    } else {
+      nav.classList.remove("active-mobile-nav");
+    }
+  };
+  const handleCloseMenuPanel = function() {
+    mainSetupPanel.classList.remove("active-mobile-panel");
+    if (nav.classList.contains("active-mobile-nav")) {
+      nav.classList.remove("active-mobile-nav");
+    }
+    if (nav.classList.contains("active-mobile-nav")) {
+      nav.classList.remove("active-mobile-nav");
+    }
+    changeVisibilityCloseButton();
+  };
+  const toggleVisibilityMobileNav = function() {
+    const navActive = nav.classList.contains("active-mobile-nav");
+    if (
+      mainSetupPanel.classList.contains("active-mobile-panel") &&
+      !navActive
+    ) {
+      nav.classList.add("active-mobile-nav");
+      handleCloseMenuPanel();
+    } else {
+      nav.classList.add("active-mobile-nav");
+    }
+    changeVisibilityCloseButton();
+  };
 
   document.addEventListener("DOMContentLoaded", showContent);
   document.querySelector("#btn-add").addEventListener("click", addNewTask);
@@ -274,5 +319,9 @@ import {
     item.addEventListener("click", changePanelActive)
   );
   inputFieldAdd.addEventListener("keyup", handleInputSearchChange);
+  navButton.addEventListener("click", toggleVisibilityMobileNav);
+  closeButton.addEventListener("click", handleCloseMenuPanel);
+  searchForm.addEventListener("submit", e => e.preventDefault());
+
   selectCurrentDay();
 })();

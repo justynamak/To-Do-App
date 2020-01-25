@@ -21,8 +21,15 @@
 
   <body>
     <div class="flex-container w-100">
-      <nav class="nav shadow bg-white">
-        <ul class="list-group justify-content-around h-100">
+      <div class="navbar-top"></div>
+      <button class="nav-button" id="navButton">
+        <i class="fas fa-tasks"></i>
+      </button>
+      <button class="close-button" id="closeButton">
+        Powrót do listy zadań
+      </button>
+      <nav class="nav shadow bg-white" id="main-nav">
+        <ul class="list-group justify-content-around h-100t">
           <li class="nav-item border-bottom active-day" data-day="monday">
             <span class="badge badge-info"></span>
             <span class="date">Poniedziałek</span>
