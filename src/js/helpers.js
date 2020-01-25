@@ -37,7 +37,9 @@ export const generateHtml = obj => {
   li.querySelector(".task-panel:first-child button").classList.add("check-btn");
   li.querySelector(".task-panel .form-control").classList.add("task-field");
 
-  li.querySelector(".form-control").value = obj.task;
+  const input = li.querySelector(".form-control");
+  input.value = obj.task;
+  if (obj.done) input.classList.add("line-through");
   li.dataset.id = obj.id;
 };
 

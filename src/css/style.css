@@ -27,6 +27,7 @@ body {
 .input-group > .form-control:not(:last-child) {
   background: transparent;
 }
+
 .nav .badge-info {
   color: black;
   background-color: #dee2e6;
@@ -222,15 +223,31 @@ body {
   color: gray;
   outline: none;
 }
+.line-through {
+  text-decoration: line-through;
+}
+.btn-success-custom {
+  background: rgb(32, 201, 151);
+}
+
 .btn-success-custom .fa-check {
-  color: green !important;
+  color: white;
+}
+.btn-success-custom:hover {
+  background: rgb(32, 201, 151) !important;
+  color: white;
+}
+.done,
+.not-done {
+  text-decoration: none;
 }
 .check-btn:hover {
-  color: green;
-  background: none;
+  color: rgb(32, 201, 151);
+  background: transparent;
 }
-.delete-btn:hover {
-  color: red;
+.delete-btn:hover,
+.not-done {
+  color: red !important;
   background: none;
 }
 .search-results {
@@ -248,6 +265,9 @@ body {
   display: none;
 }
 .close-button {
+  display: none;
+}
+.no-task-info {
   display: none;
 }
 @media (max-width: 1280px) {

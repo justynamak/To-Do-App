@@ -30,7 +30,14 @@ import {
   const nav = document.querySelector("#main-nav");
   const mainSetupPanel = document.querySelector(".main-setup-panel");
   const closeButton = document.querySelector("#closeButton");
+  const noTaskInfo = document.querySelector("#noTaskInfo");
 
+  const showInfoNoTask = function() {
+    noTaskInfo.classList.add("active");
+  };
+  const hideInfoNoTask = function() {
+    noTaskInfo.classList.remove("active");
+  };
   const updateData = function() {
     localStorage.setItem("week", JSON.stringify(week));
   };
@@ -50,6 +57,7 @@ import {
 
     if (!week[day].tasks.length) {
       btnRemoveAll.style.display = "none";
+      showInfoNoTask();
     }
 
     items.forEach(item => {
@@ -84,13 +92,17 @@ import {
           week[key].addTask(elem);
         });
       }
-      data[currentDay].tasks.forEach(task => {
-        generateHtml(task);
+      if (!data[currentDay].tasks.length) {
+        showInfoNoTask();
+      } else {
+        data[currentDay].tasks.forEach(task => {
+          generateHtml(task);
 
-        if (task.done) {
-          checkedTask(task);
-        }
-      });
+          if (task.done) {
+            checkedTask(task);
+          }
+        });
+      }
     }
     showTasksCount(week);
     updateData();
@@ -129,6 +141,7 @@ import {
       updateData();
       showTasksCount(week);
       $("#toast-added").toast("show");
+      if (noTaskInfo.classList.contains("active")) hideInfoNoTask();
     } else {
       $("#toast-block-task").toast("show");
     }
@@ -158,6 +171,7 @@ import {
 
       if (!week[day].tasks.length) {
         btnRemoveAll.style.display = "none";
+        showInfoNoTask();
       }
     }
   };
@@ -169,11 +183,16 @@ import {
       e.target.parentElement.classList.contains("check-btn")
     ) {
       const element = e.target.closest("li");
+      const input = e.target
+        .closest(".task-panel")
+        .querySelector(".task-field");
       const day = findActiveDay(week);
       week[day].tasks[element.dataset.id].setDone(true);
       if (e.target.classList.contains("check-btn"))
         e.target.classList.add("btn-success-custom");
       else e.target.parentElement.classList.add("btn-success-custom");
+
+      input.classList.add("line-through");
       updateData();
       showTasksCount(week);
     }
@@ -202,6 +221,7 @@ import {
     });
     if (!week[day].tasks.length) {
       btnRemoveAll.style.display = "none";
+      showInfoNoTask();
     }
     showTasksCount(week);
     $("#toast-removed-all").toast("show");
@@ -238,11 +258,12 @@ import {
   const removeItems = function(list) {
     list.innerHTML = "";
   };
-  const createListItems = function(results) {
+  const createListItems = function(results, date) {
     results.forEach(item => {
       const li = document.createElement("li");
       document.querySelector(".search-results-list").appendChild(li);
-      li.innerHTML = `<a href="#">${item.task}</a>`;
+      if (item.done) li.innerHTML = `<a href="#" class="done">${item.task}</a>`;
+      else li.innerHTML = `<a href="#" class="not-done">${item.task}</a>`;
       li.classList.add("search-results-item");
     });
   };
@@ -251,13 +272,13 @@ import {
     searchResults.appendChild(ul);
     ul.classList.add("search-results-list");
   };
-  const showSearchResults = function(results) {
+  const showSearchResults = function(results, date) {
     searchResults.classList.add("active");
     const items = searchResults.querySelector("li");
     const ul = searchResults.querySelector("ul");
     if (items) removeItems(ul);
     if (!ul) createListResults();
-    createListItems(results);
+    createListItems(results, date);
   };
 
   const handleInputSearchChange = function(e) {
@@ -275,13 +296,7 @@ import {
       searchResults.classList.remove("active");
     }
   };
-  const changeVisibilityMobileNav = function() {
-    if (nav.classList.contains("active-mobile-nav")) {
-      nav.classList.remove("active-mobile-nav");
-    } else {
-      nav.classList.remove("active-mobile-nav");
-    }
-  };
+
   const handleCloseMenuPanel = function() {
     mainSetupPanel.classList.remove("active-mobile-panel");
     if (nav.classList.contains("active-mobile-nav")) {
