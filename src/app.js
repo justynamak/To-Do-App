@@ -65,6 +65,7 @@ import {
     });
     week[day].tasks.forEach(task => {
       generateHtml(task);
+      hideInfoNoTask();
       if (task.done) {
         checkedTask(task);
       }
