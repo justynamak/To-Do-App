@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>To do App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="./src/css/bootstrap.min.css"> -->
+
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -101,15 +101,19 @@
                   </ul>
                   <button
                     type="button"
-                    class="btn btn-outline-secondary mt-5 btn-clear-all"
+                    class="btn btn-danger btn-sm mt-5 btn-clear-all"
+                    data-toggle="modal"
+                    data-target="#removeAllTasks"
+                    id="btnRemoveAllTasks"
                   >
+                    <i class="far fa-trash-alt"></i>
                     Wyczyść bieżącą listę zadań
                   </button>
                 </section>
               </section>
               <section class="panel-new-task main-setup-panel">
                 <div class="main-setup-panel-content active" id="addTask">
-                  <h3>Dodaj nowe zadanie</h3>
+                  <h3 class="text-center">Dodaj nowe zadanie</h3>
                   <section class="new-task-container mt-4">
                     <form>
                       <div class="input-group">
@@ -131,7 +135,7 @@
                   </section>
                 </div>
                 <div class="main-setup-panel-content" id="searchTask">
-                  <h3>Wyszukaj zadanie</h3>
+                  <h3 class="text-center">Wyszukaj zadanie</h3>
                   <form id="searchForm">
                     <div class="input-group">
                       <input
@@ -142,7 +146,7 @@
                       />
                     </div>
                   </form>
-                  <div class="search-results">
+                  <div class="search-results text-center">
                     <h4 class="lead mt-4">Wyniki wyszukiwania:</h4>
                   </div>
                 </div>
@@ -243,6 +247,50 @@
         </div>
         <div class="toast-body">
           Nie możesz dodawać zadań dla zakończych dni.
+        </div>
+      </div>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="removeAllTasks"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="removeAllTasks"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="removeAllTasksTitle">
+                Data
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>
+                Czy na pewno chcesz usunąć wszystkie zadania?
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Anuluj
+              </button>
+              <button type="button" class="btn btn-danger" id="btnClearAll">
+                Usuń
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

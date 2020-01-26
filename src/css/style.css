@@ -67,10 +67,10 @@ body {
   height: 100vh;
   top: 0;
   right: 0;
-  background: #dee2e6;
+  background: #e9ecef;
   width: 20%;
   padding: 75px 20px;
-  color: #6c757d;
+  color: #343a40;
 }
 .main-setup-panel-content {
   display: none;
@@ -116,7 +116,9 @@ body {
 }
 
 .menu-panel-item-active {
-  color: #17a2b8 !important;
+  color: #ffffff !important;
+  background: var(--gray-dark);
+  border: 2px solid white;
 }
 /* App container*/
 .app-container {
@@ -203,12 +205,12 @@ body {
   transition: 0.3s all ease-in-out;
 }
 .btn-custom-color {
-  color: white;
-  background: #17a2b8;
+  color: #ffffff !important;
+  background: var(--gray-dark);
 }
 .btn-custom-color:hover {
-  color: white;
-  background: #17a2b8;
+  color: #ffffff !important;
+  background: var(--gray);
 }
 /* #ec0972 */
 .date {
@@ -252,6 +254,7 @@ body {
 }
 .search-results {
   display: none;
+  cursor: pointer;
 }
 .search-results-list {
   margin: 0;

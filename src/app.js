@@ -20,7 +20,8 @@ import {
 
 (function() {
   const toDoList = document.querySelector("#to-do-list");
-  const btnRemoveAll = document.querySelector(".btn-clear-all");
+  const btnRemoveAll = document.querySelector("#btnClearAll");
+  const btnRemoveAllTasks = document.querySelector("#btnRemoveAllTasks");
   const navItems = [...document.querySelectorAll(".nav-item")];
   const menuPanelItems = [...document.querySelectorAll(".menu-panel-item")];
   const inputFieldAdd = document.querySelector("#inputAdd");
@@ -37,6 +38,9 @@ import {
   };
   const hideInfoNoTask = function() {
     noTaskInfo.classList.remove("active");
+  };
+  const hideBtnRemoveAllTasks = function() {
+    btnRemoveAllTasks.style.display = "none";
   };
   const updateData = function() {
     localStorage.setItem("week", JSON.stringify(week));
@@ -56,7 +60,7 @@ import {
     week[day].active = true;
 
     if (!week[day].tasks.length) {
-      btnRemoveAll.style.display = "none";
+      hideBtnRemoveAllTasks();
       showInfoNoTask();
     }
 
@@ -130,6 +134,7 @@ import {
       return inputValue;
     }
     const value = getValue();
+    if (!value) return;
     let task;
 
     if (
@@ -172,7 +177,7 @@ import {
       showTasksCount(week);
 
       if (!week[day].tasks.length) {
-        btnRemoveAll.style.display = "none";
+        hideBtnRemoveAllTasks();
         showInfoNoTask();
       }
     }
@@ -210,7 +215,10 @@ import {
       updateData();
     }
   };
-
+  const confirmRemoveAllTask = function() {
+    const date = week[findActiveDay(week)].date;
+    document.querySelector("#removeAllTasksTitle").innerHTML = date;
+  };
   const removeAllTasks = function(e) {
     e.preventDefault();
     const day = findActiveDay(week);
@@ -222,11 +230,12 @@ import {
       toDoList.removeChild(elem);
     });
     if (!week[day].tasks.length) {
-      btnRemoveAll.style.display = "none";
+      hideBtnRemoveAllTasks();
       showInfoNoTask();
     }
     showTasksCount(week);
     $("#toast-removed-all").toast("show");
+    $("#removeAllTasks").modal("hide");
   };
   const clearAllElementsActiveClass = function(elements, className) {
     const elems = document.querySelectorAll(elements);
@@ -263,10 +272,12 @@ import {
   const createListItems = function(results, date) {
     results.forEach(item => {
       const li = document.createElement("li");
+
       document.querySelector(".search-results-list").appendChild(li);
-      if (item.done) li.innerHTML = `<a href="#" class="done">${item.task}</a>`;
-      else li.innerHTML = `<a href="#" class="not-done">${item.task}</a>`;
-      li.classList.add("search-results-item");
+      if (item.done)
+        li.outerHTML = `<li class="search-results-item done">${item.task}</li>`;
+      else
+        li.outerHTML = `<li  class="search-results-item not-done">${item.task}</li>`;
     });
   };
   const createListResults = function() {
@@ -329,6 +340,7 @@ import {
   toDoList.addEventListener("click", checkTask);
   toDoList.addEventListener("input", updateTask);
   btnRemoveAll.addEventListener("click", removeAllTasks);
+  btnRemoveAllTasks.addEventListener("click", confirmRemoveAllTask);
   navItems.forEach(item => {
     item.addEventListener("click", chooseDay);
   });
